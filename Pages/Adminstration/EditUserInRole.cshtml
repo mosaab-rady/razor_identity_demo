@@ -1,0 +1,31 @@
+@page
+@model EditUserInRoleModel
+@{
+	var roleId = ViewData["roleId"];
+}
+
+<form method="post">
+	<div class="card">
+		<div class="card-header">
+			<h2>Add Or Remove user from this role</h2>
+		</div>
+		<div class="card-body">
+			@for (int i = 0; i < Model.model.Count; i++)
+			{
+				<div class="form-group">
+					<input type="hidden" asp-for="@Model.model[i].UserId">
+					<input type="hidden" asp-for="@Model.model[i].Email">
+					<input asp-for="@Model.model[i].IsSelected" class="form-check-input" />
+					<label asp-for="@Model.model[i].IsSelected" class="form-check-label">
+						@Model.model[i].Email
+					</label>
+				</div>
+			}
+		</div>
+
+		<div class="card-footer">
+			<input type="submit" value="update" class="btn btn-primary">
+			<a class="btn btn-primary" asp-page="/adminstration/editrole" asp-route-id="@roleId">Cancel</a>
+		</div>
+	</div>
+</form>

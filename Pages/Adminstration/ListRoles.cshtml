@@ -1,0 +1,49 @@
+@page
+@model ListRolesModel
+@{
+	ViewData["Title"] = "All Roles";
+}
+
+
+<h1>All Roles</h1>
+
+
+@if (Model.roles.Any())
+{
+	<a asp-page="/adminstration/createrole" class="btn btn-primary">Create Role</a>
+
+	foreach (var role in Model.roles)
+	{
+
+
+		<div class="card">
+	<div class="card-header">
+		Role Id : @role.Id
+	</div>
+	<div class="card-body">
+		<h5 class="card-title">
+			@role.Name
+		</h5>
+	</div>
+	<div class="card-footer">
+		<a asp-page="/adminstration/editrole" asp-route-id="@role.Id" class="btn btn-primary">Edit</a>
+		<a href="#" class="btn btn-danger">Delete</a>
+	</div>
+
+</div>
+	}
+}
+else
+{
+	<div class="card">
+	<div class="card-header">
+		No Roles Created yet
+	</div>
+	<div class="card-body">
+		<h5 class="card-title">
+			Use the button below to create a role
+		</h5>
+		<a asp-page="/adminstration/createrole" class="btn btn-primary">Create Role</a>
+	</div>
+</div>
+}

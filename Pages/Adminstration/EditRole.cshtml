@@ -1,0 +1,53 @@
+@page "{id}"
+@model EditRoleModel
+@{
+	ViewData["Title"] = "Edit Role";
+}
+
+<h1>Edit Role</h1>
+
+<form method="post">
+	<div class="form-group">
+		<label asp-for="model.Id" class="form-label"></label>
+		<input asp-for="model.Id" disabled class="form-control">
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.model.RoleName" class="form-label"></label>
+		<input asp-for="@Model.model.RoleName" class="form-control">
+		<span asp-validation-for="@Model.model.RoleName" class="text-danger"></span>
+	</div>
+
+
+	<div asp-validation-summary="All" class="text-danger"></div>
+
+	<div class="form-group">
+		<button type="submit" class="btn btn-primary">Update</button>
+		<a asp-page="/adminstration/listroles" class="btn btn-primary">Cancel</a>
+	</div>
+	<div class="card">
+		<div class="card-header">
+			Users in this role
+		</div>
+		<div class="card-body">
+			@if (Model.model.Users.Any())
+			{
+				foreach (var user in Model.model.Users)
+				{
+					<h5 class="card-title">
+						@user
+					</h5>
+				}
+			}
+			else
+			{
+				<h5 class="card-title">
+					None At the moment
+				</h5>
+			}
+		</div>
+		<div class="card-footer">
+			<a asp-page="/adminstration/edituserinrole" asp-route-roleId="@Model.model.Id" class="btn btn-primary">Add
+				users</a>
+		</div>
+	</div>
+</form>
