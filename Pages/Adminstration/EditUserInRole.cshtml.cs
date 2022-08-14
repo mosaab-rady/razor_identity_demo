@@ -46,7 +46,7 @@ public class EditUserInRoleModel : PageModel
 			};
 
 
-			if (await userManager.IsInRoleAsync(user, role.Id))
+			if (await userManager.IsInRoleAsync(user, role.Name))
 			{
 				userRoleViewModel.IsSelected = true;
 			}
